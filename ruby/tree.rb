@@ -2,9 +2,6 @@
 
 #Let's build a tree
 
-class Empty
-end
-
 class Tree
   attr_accessor :data, :left, :right
   def initialize(data)
@@ -29,24 +26,36 @@ class Tree
     end
   end
 
-  def traverse(&block)
-    @left.traverse(&block) unless @left==nil
+  def inorder_traverse(&block)
+    @left.inorder_traverse(&block) unless @left==nil
     yield @data
-    @right.traverse(&block) unless @right==nil
+    @right.inorder_traverse(&block) unless @right==nil
+  end
+
+  def depth_traverse(&block)
+    @left.depth_traverse(&block) unless @left==nil
+    @right.depth_traverse(&block) unless @right==nil
+    yield @data
   end
 
   def to_s
-    puts @left
-    puts @data
-    puts @right
+    @left.to_s + @data.to_s + @right.to_s
   end
 
 end
 
-t = Tree.new(7)
-t.add(4)
-t.add(9)
-t.add(1)
-t.add(8)
+t = Tree.new(" ")
 
-t.traverse {|i| puts "Found #{i}"}
+text = "Now is the winter of our discontent, made glorious summer by this son of York"
+
+puts "Sorting \"#{text}\""
+
+#Build the tree
+text.split.each {|word| t.add word}
+
+sorted = []
+t.inorder_traverse {|i| sorted.push i}
+
+print "#{sorted.join ' '}"
+
+puts
