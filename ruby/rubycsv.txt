@@ -1,0 +1,4 @@
+Manufacturer, Model, Type, Cost
+Giant, Trance 1, MTB, $3000
+Giant, Defy 1, Road, $1000
+Giant, Thermo 1, $1600
