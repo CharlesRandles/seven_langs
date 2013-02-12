@@ -14,10 +14,10 @@ Fib getNext := method (
         last = old )
 
 Fib iterGetNth := method(n,
-        for (i,1,n,1, getNext)
+        for (i,3,n,1, getNext)
                 current)
 
-Fib recGetNth := method (n, if (n==0, current,
+Fib recGetNth := method (n, if (n<=2, current,
         getNext
         recGetNth(n - 1)))
 
@@ -25,4 +25,10 @@ f := Fib clone
 f reset
 f recGetNth(7) println
 
+/*And now a little more brutally*/
+fibonacci := method(a,b,n,
+        if (n<=2, b, fibonacci(b, a+b, (n-1))))
 
+getNthFib := method(n,fibonacci (1,1,n))
+
+getNthFib(10) println
