@@ -7,18 +7,13 @@
         If you're going to destroy an entire algebra...
 */
 
-//Let's create an entirely new operator. For fun.
-OperatorTable addOperator ("\\", 2) //Same precedence as /
+"7 / 0 = " print
+(7/0) println
 
-Number \ = method (a,b,
-        if (b==0, b, a/b) //There. We did it. We broke algebra! I hope you feel happy.
-)
+//Grab the old block
+oldSlash := Number getSlot ("/")
 
-a := 2/0
-"Before we obliterate number theory, 2/0=" print
-a println
-
-b := 2\0
-"Are you feeling proud? 2\0=" print
-b println
-
+//Destroy algebra!
+Number / := method(a, if((a==0), a, self oldSlash a))
+"7 / 0 = " print
+(7/0) println
