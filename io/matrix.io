@@ -1,6 +1,5 @@
 /*
         A matrix implementation;
-        It's a simple list that knows its width and height
 */
 
 Matrix := Object clone
@@ -23,6 +22,13 @@ Matrix dim := method(x,y,
         for (i,0,y-1,
                 data push(makeList(x-1, nil))))
 
+Matrix fromData := method(newData,
+        m := Matrix clone
+        m height = newData size
+        m width = (newData at(0)) size
+        m data = newData
+        m)
+
 Matrix set := method (x,y,val,
         (data at(y)) atPut(x, val))
 
@@ -39,6 +45,13 @@ Matrix transpose := method(
                 m set(i,j, get(j,i))))
         m)
 
+//All we need to dump is our data list
+Matrix serialize := method(fileName,
+        File with(fileName) open write(data serialized) close)
+
+Matrix unserialize := method(fileName,
+        newData := doFile(fileName)
+        fromData(newData))
 
 //Mostly for debugging
 Matrix prettyPrint := method (
@@ -69,3 +82,8 @@ m prettyPrint
 t := m transpose
 
 t prettyPrint
+m data asString println
+
+"#############" println
+t serialize("transposed.dat")
+Matrix unserialize("transposed.dat") prettyPrint
