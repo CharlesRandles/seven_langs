@@ -50,8 +50,7 @@ Matrix serialize := method(fileName,
         File with(fileName) open write(data serialized) close)
 
 Matrix unserialize := method(fileName,
-        newData := doFile(fileName)
-        fromData(newData))
+        fromData(doFile(fileName)))
 
 //Mostly for debugging
 Matrix prettyPrint := method (
