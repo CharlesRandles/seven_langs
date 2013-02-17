@@ -12,7 +12,7 @@ book_genre(sf, surface_detail).
 book_genre(humour, carpe_jugulum).
 book_genre(fantasy, carpe_jugulum).
 
-writes_genre(X, A) :- book_genre(X,B), book_author(B, A).
+writes_genre(X, A, B) :- book_genre(X,B), book_author(B, A).
 
 books_by(A, B) :- book_author(B, A).
 
