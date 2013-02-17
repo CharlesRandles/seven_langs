@@ -38,5 +38,6 @@ with_attrs := Builder clone
 with_attrs {"author" : "Tate", "publisher" :"PragProgs"}
 
 with_attrs book({"author" : "Tate", "publisher" :"PragProgs"},
-        chapter({"number" : "1"}, "It was a dark and stormy night")
-        chapter({"number" : "2"}, "It was the best of times, it was the worst of times"))
+        chapter({"number" : "1"}, "It was a dark and stormy night"),
+        chapter({"number" : "2"}, "It was the best of times, it was the worst of times"),
+        postscript("We're done here."))
