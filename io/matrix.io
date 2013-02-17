@@ -61,19 +61,7 @@ Matrix prettyPrint := method (
                 "\t" print))
            "|" println))
 
-m := Matrix clone
-m dim(2,2)
-m set(0,0,"foo")
-m set(1,0,"bar")
-m set(0,1,"baz")
-m set(1,1,"quux")
-m println
-
-m get(0,0) println
-m get(0,1) println
-m get(1,0) println
-m get(1,1) println
-
+m := Matrix fromData(list(list("foo", "bar"), list("baz", "quux")))
 m prettyPrint
 
 "**************" println
@@ -86,3 +74,9 @@ m data asString println
 "#############" println
 t serialize("transposed.dat")
 Matrix unserialize("transposed.dat") prettyPrint
+
+"$$$$$$$$$$$$$$"println
+x := Matrix fromData(list(list(1,2,4), list(3,7,11), list(8,5,3), list(14, 28, 57)))
+x prettyPrint
+"Transposed:" println
+x transpose prettyPrint
