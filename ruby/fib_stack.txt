@@ -1,4 +1,4 @@
-  in bad_fib(7)
+	in bad_fib(7)
 	in bad_fib(6)
 	in bad_fib(5)
 	in bad_fib(4)
@@ -40,6 +40,7 @@
 	in bad_fib(0)
 	in bad_fib(1)
 bad_fib(7) = 21
+41 calls.
 ***********************************
 	in good_fib_helper(8)
 	in good_fib_helper(7)
@@ -49,3 +50,4 @@ bad_fib(7) = 21
 	in good_fib_helper(3)
 	in good_fib_helper(2)
 good_fib(7) = 21
+7 calls.
