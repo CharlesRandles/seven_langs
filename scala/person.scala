@@ -23,6 +23,14 @@ extends Person(fn, ln) {
 
 }
 
+trait Slack {
+      def greet() = println("Bobbing along nicely.")
+}
+
+class Discordian(fn: String, 
+      	         ln: String, 
+		 val title: String) 
+extends Employee(fn, ln, title) with Slack
 
 val eris = new Person("Eris")
 eris.hello
@@ -30,6 +38,7 @@ eris.hello
 val wabbit = new Person("Bugs", "Bunny")
 wabbit.hello
 
-val bob = new Employee("Bob", "Dobbs", "Drilling Equipment Salesman")
+val bob = new Discordian("Bob", "Dobbs", "Drilling Equipment Salesman")
 bob.hello
 bob.sayRole
+bob.greet
