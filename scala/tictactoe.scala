@@ -47,10 +47,6 @@ class Board() {
       def tied():Boolean = (!won) && (moveCount == 9)
 
       def playGame {
-          board = Array(" "," "," ",
-      	  	        " "," "," ",
-			" "," "," ")
-          moveCount = 0
 	  if (tied) {
 	     println("Tied game.")
 	  } else {

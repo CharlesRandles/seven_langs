@@ -17,9 +17,9 @@ println("totalLength is " + totalLength(words.split(" ").toList))
 • Load the curse words and alternatives from a file.
 */
 
-def loadMap(fileName: String): Map[String,String] = {
-    var pair = "" -> ""
-    var m = Map("" -> "")
+def loadMap(fileName: String): Map[String,String] = { 
+    var pair = ""->""
+    var m = Map(pair)
     for (line <- fromFile(fileName).getLines) {
     	pair = line.split(",")(0) -> line.split(",")(1)
 	println(pair)
