@@ -18,10 +18,10 @@ count_to_10(10) ->
     io:format("~B\n", [10]);
 
 count_to_10(N) ->
-    io:format("~B\n", [N]),
+    io:format("~B~n", [N]),
     count_to_10(1+N).
 
 pass_fail(success) ->
-    io:format("~s\n", ["Success!"]);
+    io:format("~s~n", ["Success!"]);
 pass_fail({error, Message}) ->
-    io:format("~s\n", [Message]).
+    io:format("~s~n", [Message]).
