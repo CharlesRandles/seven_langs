@@ -19,12 +19,10 @@
 ;;But here's how I would do it.
 
 (defn collection-type[col]
-  (let [coltype (type col)]
-       (cond (= coltype (type '())) :list
-	     (= coltype (type '(1))) :list ;Different type from empty
-	     (= coltype (type '{})) :map
-	     (= coltype (type [])) :vector
-	     (= coltype (type #{})) :set)))
+  (cond (list? col) :list
+	(map? col) :map
+	(vector? col) :vector
+	(set? col) :set))
 
 ;;All the possibilities I could think of.
 (deftest coltype-test
