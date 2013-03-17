@@ -26,7 +26,7 @@
   (println (format "%d people waiting" @chairs-filled))
   (println (format "%d people turned away" @turned-away))
   (if (> (total-customers) 0)
-      (println (format "Satisfaction level: %s%%" (str (* 100.0 (/ @haircuts (total-customers))))))))
+      (println (format "Satisfaction level: %.0f%%" (* 100.0 (/ @haircuts (total-customers)))))))
 
 (defn cut-hair[barber]
   ;;Empty a waiting chair
