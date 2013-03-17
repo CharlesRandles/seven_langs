@@ -22,7 +22,7 @@
 (defn total-customers[] (+ @haircuts @chairs-filled @turned-away))
 (defn status[]
   (println (format "Chair state%s" @barber-chair))  
-  (println (format "%d Haircuts competed" @haircuts))
+  (println (format "%d Haircuts completed" @haircuts))
   (println (format "%d people waiting" @chairs-filled))
   (println (format "%d people turned away" @turned-away))
   (if (> (total-customers) 0)
@@ -32,7 +32,7 @@
   ;;Empty a waiting chair
   (dosync (alter chairs-filled minus 1))
   (dosync (alter barber-chair swap-state))
-     ;;Cut the hair
+  ;;Cut the hair
   (Thread/sleep haircut-time)
   (dosync (alter haircuts plus 1))
   (dosync (alter barber-chair swap-state)))
