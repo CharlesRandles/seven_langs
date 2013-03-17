@@ -19,11 +19,14 @@
     :empty))
 (defn empty-chair[chair-ref]
   (= :empty @chair-ref))
+(defn total-customers[] (+ @haircuts @chairs-filled @turned-away))
 (defn status[]
   (println (format "Chair state%s" @barber-chair))  
   (println (format "%d Haircuts competed" @haircuts))
   (println (format "%d people waiting" @chairs-filled))
-  (println (format "%d people turned away" @turned-away)))
+  (println (format "%d people turned away" @turned-away))
+  (if (> (total-customers) 0)
+      (println (format "Satisfaction level: %s%%" (str (* 100.0 (/ @haircuts (total-customers))))))))
 
 (defn cut-hair[barber]
   ;;Empty a waiting chair
