@@ -20,6 +20,7 @@
 (defn empty-chair[chair-ref]
   (= :empty @chair-ref))
 (defn total-customers[] (+ @haircuts @chairs-filled @turned-away))
+(defn customer-waiting[] (> @chairs-filled 0))
 (defn status[]
   (println (format "Chair state%s" @barber-chair))  
   (println (format "%d Haircuts completed" @haircuts))
@@ -35,7 +36,9 @@
   ;;Cut the hair
   (Thread/sleep haircut-time)
   (dosync (alter haircuts plus 1))
-  (dosync (alter barber-chair swap-state)))
+  (dosync (alter barber-chair swap-state))
+  (if (customer-waiting)
+      (recur barber)))
 
 (defn customer-arrive[shop]
   ;;A customer turns up
