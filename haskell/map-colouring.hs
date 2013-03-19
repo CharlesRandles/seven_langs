@@ -35,4 +35,4 @@ colouring = [  [(WA, c_wa),
 
 main :: IO ()
 main = do
-       putStrLn $ show $ colouring
+       putStrLn . unlines . map show $ colouring
