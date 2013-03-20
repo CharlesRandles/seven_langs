@@ -1,6 +1,4 @@
 module Main where
-import Data.List
-import Control.Monad
 
 data State = WA | NT | QLD | SA | NSW | VIC
      deriving (Eq, Show)
