@@ -18,6 +18,9 @@ allEven_2 = filter even
 allEven_3 :: [Integer] -> [Integer]
 allEven_3 l = [x | x <- l, even x]
 
+{- folds  -}
+allEven_4 l= foldr appendIfEven [] l
+          where appendIfEven n xs =  if even n then n:xs else xs
 
 {-Write a function that takes a list and returns the same list in reverse. -}
 --my_reverse :: [a] -> [a]
@@ -47,6 +50,7 @@ main = do
      putStrLn $ show $ allEven_1 [1,2,3,4,5,6,7,8,9]
      putStrLn $ show $ allEven_2 [1,2,3,4,5,6,7,8,9]
      putStrLn $ show $ allEven_3 [1,2,3,4,5,6,7,8,9]
+     putStrLn $ show $ allEven_4 [1,2,3,4,5,6,7,8,9]
      putStrLn $ show $ my_reverse [1,2,3,4]
      putStrLn $ show colour_pairs
      putStrLn $ show $ last times_table
