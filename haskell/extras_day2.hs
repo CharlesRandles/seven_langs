@@ -49,7 +49,7 @@ line_number _ [] = []
 line_number n (x:xs) = (show n ++ ":\t" ++ x):(line_number (n + 1) xs) 
 
 number_lines :: [String] -> [String]
-number_lines = line_number 0
+number_lines = line_number 1
 
 --Take a line length and a block of text and
 --break it into lines not exceeding the length
@@ -77,4 +77,4 @@ text = "If you should ever find yourself in the company of a hobbit and an ill-t
 
 main :: IO ()
 main = do
-     putStrLn $ unlines $ line_number 1 $ lines $ justify RJust 25 text
+     putStrLn $ unlines $ number_lines $ lines $ justify RJust 25 text
