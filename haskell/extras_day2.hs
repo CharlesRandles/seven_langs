@@ -77,4 +77,4 @@ text = "If you should ever find yourself in the company of a hobbit and an ill-t
 
 main :: IO ()
 main = do
-     putStrLn $ justify RJust 25 text
+     putStrLn $ unlines $ line_number 1 $ lines $ justify RJust 25 text
