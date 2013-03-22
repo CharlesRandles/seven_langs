@@ -13,17 +13,9 @@ my_gcd a b = if (a==b)
                            maxarg = max a b
 
 {- Create a lazy sequence of prime numbers. -}
-
---Primes. This is almost frightening in its expressiveness.
---It's appallingly inefficient, though.
 divisors n = filter (\x -> (mod n x) == 0)  [2..(div (n+1) 2)]
 prime = (\x -> x==0) . length . divisors
 lazy_primes = filter prime [2..]
-
-{- Break a long string into individual lines at proper word boundaries. -}
-
-{-I'm going to use some library functions, and reading ahead, I think he means
-split a string into lines of a specified length at word boundaries. -}
 
 --Compose a line up to a given length from a list of words.
 --FIXME: Infnite loop if any word exceeds the line length
@@ -59,7 +51,7 @@ length_lines ls= [ (show $ length l) ++ "\t" ++ l | l <- ls]
 text_to_lines :: Int -> String -> [String]
 text_to_lines n s = make_lines n $ words s
 
---Justify functions
+{- Justify functions -}
 
 --Adds an extra space wherever there's a space already
 double_spaces :: String -> String
@@ -99,10 +91,11 @@ justify LJust = left_justify
 justify RJust = right_justify
 justify FJust = full_justify
 
-text = "If you should ever find yourself in the company of a hobbit and an ill-tempered dragon, remember - you do not have to outrun the dragon. You only have to outrun the hobbit. Beware of tricksy hobbits, whose attentive polishing of your boots may have included the removal of your laces or - worse - leaving your laces in your boots, but inextricably knotted. The dragon is getting closer."
+text = "If you should ever find yourself in the company of a hobbit and an ill-tempered dragon, remember - you do not have to outrun the dragon. You only have to outrun the hobbit. Beware of tricksy hobbits, whose attentive polishing of your boots may have included the removal of your laces or - worse - leaving the laces in your boots, but inextricably knotted. The dragon is getting closer. Was that the sound of indrawn breath behind you?"
 
 main :: IO ()
 main = do
-     putStrLn $ justify LJust 35 text
-     putStrLn $ justify RJust 35 text
-     putStrLn $ justify FJust 35 text
+     putStrLn $ justify LJust w text
+     putStrLn $ justify RJust w text
+     putStrLn $ justify FJust w text
+              where w = 40
