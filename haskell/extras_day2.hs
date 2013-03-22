@@ -63,7 +63,8 @@ text_to_lines n s = make_lines n $ words s
 
 --Adds an extra space wherever there's a space already
 double_spaces :: String -> String
-double_spaces s = concat [if c == ' ' then "  " else [c] | c <- s]
+double_spaces s = if doubled == s then s ++ " " else doubled
+              where doubled = concat [if c == ' ' then "  " else [c] | c <- s]
 
 space_to_length n s =
                 if (length s) >= n then s
@@ -102,6 +103,6 @@ text = "If you should ever find yourself in the company of a hobbit and an ill-t
 
 main :: IO ()
 main = do
-     putStrLn $ unlines $ lines $ justify LJust 45 text
-     putStrLn $ unlines $ lines $ justify RJust 45 text
-     putStrLn $ unlines $ lines $ justify FJust 45 text
+     putStrLn $ justify LJust 35 text
+     putStrLn $ justify RJust 35 text
+     putStrLn $ justify FJust 35 text
