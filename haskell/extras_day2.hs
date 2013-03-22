@@ -51,19 +51,44 @@ line_number n (x:xs) = (show n ++ ":\t" ++ x):(line_number (n + 1) xs)
 number_lines :: [String] -> [String]
 number_lines = line_number 1
 
+--Prepend each line with its length.
+length_lines ls= [ (show $ length l) ++ "\t" ++ l | l <- ls]
+
 --Take a line length and a block of text and
 --break it into lines not exceeding the length
 text_to_lines :: Int -> String -> [String]
 text_to_lines n s = make_lines n $ words s
 
 --Justify functions
+
+--Adds an extra space wherever there's a space already
+double_spaces :: String -> String
+double_spaces s = concat [if c == ' ' then "  " else [c] | c <- s]
+
+space_to_length n s =
+                if (length s) >= n then s
+                else space_to_length n $ double_spaces s
+
+--Remove n spaces from a double-spaced string
+unspace :: Int -> String -> String
+unspace 0 s = s
+unspace _ "" = ""
+unspace n (' ':' ':xs) = unspace (n - 1) (" " ++ xs)
+unspace n (x:xs) = x:(unspace n xs)
+
+fit_to_length :: Int -> String -> String 
+fit_to_length n s = if n==length s then s
+              else unspace ((length elongated) - n) elongated
+                   where elongated = space_to_length n s
+
 lpad :: Int -> String -> String
 lpad 0 s = s
 lpad n s = if length s == n then s else " " ++ lpad (n - 1) s
 
 left_justify n = unlines . text_to_lines n
 right_justify n s = unlines $ map (\x -> lpad n x) (text_to_lines n s)
-full_justify = undefined
+full_justify n s = unlines $ map (fit_to_length n) $ text_to_lines n s
+
 data Margin = LJust | RJust | FJust
      deriving (Show)
 
@@ -73,8 +98,10 @@ justify LJust = left_justify
 justify RJust = right_justify
 justify FJust = full_justify
 
-text = "If you should ever find yourself in the company of a hobbit and an ill-tempered dragon, remember - you do not have to outrun the dragon."
+text = "If you should ever find yourself in the company of a hobbit and an ill-tempered dragon, remember - you do not have to outrun the dragon. You only have to outrun the hobbit. Beware of tricksy hobbits, whose attentive polishing of your boots may have included the removal of your laces or - worse - leaving your laces in your boots, but inextricably knotted. The dragon is getting closer."
 
 main :: IO ()
 main = do
-     putStrLn $ unlines $ number_lines $ lines $ justify RJust 25 text
+     putStrLn $ unlines $ lines $ justify LJust 45 text
+     putStrLn $ unlines $ lines $ justify RJust 45 text
+     putStrLn $ unlines $ lines $ justify FJust 45 text
